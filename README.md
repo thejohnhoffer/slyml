@@ -13,7 +13,7 @@ This tutorial is of general interest for `slurm` users, but `slyml.py` has mainl
 
 ## Lesson 0: Needs
 
-Let's say our script `something.sbatch` tries to find some words spoken in video streams. Getting timestamps for the first lyric `"Itʼs easy as A, B, C."` will help find timestamps for the second lyric `"As simple as do, re, mi"`, and so on and so on as the song continues. If only the lyric changes each time we call our script, `something.sbatch` may look like this:
+Let's say our script `something.sbatch` tries to find some words spoken in video files. Getting timestamps for the first lyric `"Itʼs easy as A, B, C."` will help find timestamps for the second lyric `"As simple as do, re, mi"`, and so on and so on as the song continues. If only the lyric changes each time we call our script, `something.sbatch` may look like this:
 
 ```bash
 #!/bin/bash
