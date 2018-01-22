@@ -184,3 +184,8 @@ Default:
 ## Footnotes
 #### Slurm Sbatch
 Installing [Slurm](https://slurm.schedmd.com/quickstart.html) lets you run processes in parallel over a [cluster](https://en.wikipedia.org/wiki/Computer_cluster) of computers running [linux](https://slurm.schedmd.com/platforms.html). Slurm includes `sbatch`, which executes scripts like `something.sbatch` as "slurm jobs" with [optional flags](https://slurm.schedmd.com/sbatch.html) such as `--array` for parallel jobs or `--dependency` for serial dependencies between jobs.
+
+## Installation
+
+1. Get access to a slurm cluster or try to [set one up](https://slurm.schedmd.com/quickstart_admin.html) with the extra supercomputers around the house.
+2. Make sure that you have access to Python in an interactive login shell on your slurm cluster
