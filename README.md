@@ -1,4 +1,4 @@
-# slyml
+# slyml 2.2
 
 This tutorial is of general interest for `slurm`[†](#slurm-sbatch) users, but `slyml.py` has mainly streamlined conversion of image stacks to meshes needed for the [3DXP project](https://github.com/Rhoana/3dxp) in [Scalable Interactive Visualization for Connectomics](http://www.mdpi.com/2227-9709/4/3/29/pdf). Slyml is developed and maintained [in the 3DXP repository](https://github.com/Rhoana/3dxp/blob/master/TASKS/readme.md). Reminder: `slyml.py` needs `python2 (>=2.6)` and `slurm (>=14.11)`.
 
