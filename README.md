@@ -2,6 +2,8 @@
 
 This tutorial is of general interest for `slurm` users, but `slyml.py` has mainly streamlined the frequent conversion of image stacks to surface meshes needed for the [3DXP project](https://github.com/Rhoana/3dxp) in [Scalable Interactive Visualization for Connectomics](http://www.mdpi.com/2227-9709/4/3/29/pdf). Slyml is developed and maintained [in the 3DXP repository](https://github.com/Rhoana/3dxp/blob/master/TASKS/readme.md). Reminder: `slyml.py` needs `python2 (>=2.6)` and `slurm (>=14.11)`.
 
+<p align="center">❧</p>
+
 > A B C it's easy,
 > It's like counting up to 3.
 > Sing a simple melody:
@@ -11,7 +13,7 @@ This tutorial is of general interest for `slurm` users, but `slyml.py` has mainl
 
 ## Lesson 0: Needs
 
-Let's say our script `something.sbatch` tries to find some words spoken in video streams. Getting timestamps for the first lyric `"Itʼs easy as A, B, C."` will help find timestamps for the second lyric `"As simple as do, re, mi"`, and so on and so on as the song continues. If only the lyric changes each time we call our script, this may be `something.sbatch`:
+Let's say our script `something.sbatch` tries to find some words spoken in video streams. Getting timestamps for the first lyric `"Itʼs easy as A, B, C."` will help find timestamps for the second lyric `"As simple as do, re, mi"`, and so on and so on as the song continues. If only the lyric changes each time we call our script, `something.sbatch` may look like this:
 
 ```bash
 #!/bin/bash
@@ -47,13 +49,32 @@ Default:
     partition: general
     Exports: [lyric]
     time: "1:00"
-    Inputs:
+    Constants:
         IT: love
         A: do,
         B: re,
         C: mi.
 ```
-Running `python song.yaml` queues each lyric in the correct order. Our `something.sbatch` then handles each `lyric` in order one after another. **Here is the standard output**:
+Notice how in the `Main` `Inputs` here:
+```
+  Inputs:
+      THAT: "how easy {IT} can be."
+      A: 1
+      B: 2
+      C: 3
+```
+Locally overwrite or expand on the `Deafult` `Constants` here:
+```
+  Constants:
+      IT: love
+      A: do,
+      B: re,
+      C: mi
+```
+
+<p align="center">❧</p>
+
+Running `python slyml.py song.yaml` queues each lyric in the correct order. Our `something.sbatch` then handles each `lyric` in order one after another. **Here is the standard output** of `slyml.py`:
 ```yaml
 A/song\
 2A/song\
@@ -88,7 +109,7 @@ A/song
   needs 2A/song
   for AB/song
 ```
-`AB`—the last needs `A`—the focus, which needs `2A`—the first. I'll annotate to the original:
+`AB`—the last needs `A`—the focus, which needs `2A`—the first. We can note these names in the yaml file:
 
 ```yaml
 Main: &A-focus
@@ -149,7 +170,7 @@ Default:
     partition: general
     Exports: [lyric]
     time: "1:00"
-    Inputs:
+    Constants:
         IT: love
         A: do,
         B: re,
