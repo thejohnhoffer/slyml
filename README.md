@@ -71,6 +71,10 @@ that overwrite or take from the `Constants` in `Deafult`:
       B: re,
       C: mi
 ```
+Key Notes:
+* The `Inputs` format the `lyric` of any task
+* Each task sends `Exports: [lyric]` to our `something.sbatch`
+* Each task sends `Flags: [partition, time]` to slurm's `sbatch`
 
 <p align="center">❧</p>
 
