@@ -11,7 +11,7 @@ This tutorial is of general interest for `slurm` users, but `slyml.py` has mainl
 
 — The Jackson 5, ABC _(edited for clarity)_
 
-## Lesson 0: Needs
+## Lesson 0: Inputs
 
 Let's say our script `something.sbatch` tries to find some words spoken in video files. Getting timestamps for the first lyric `"Itʼs easy as A, B, C."` will help find timestamps for the second lyric `"As simple as do, re, mi"`, and so on and so on as the song continues. If only the `lyric` changes each time we call our script, `something.sbatch` may look like this:
 
@@ -76,7 +76,7 @@ Key Notes:
 * Each task sends `Exports: [lyric]` to our `something.sbatch`
 * Each task sends `Flags: [partition, time]` to slurm's `sbatch`
 
-<p align="center">❧</p>
+## Lesson 1: Needs
 
 Running `python slyml.py song.yaml` queues each lyric in the correct order. Our `something.sbatch` then handles each `lyric` in order one after another. **Here is the standard output** of `slyml.py`:
 ```yaml
@@ -139,7 +139,7 @@ When `2A` finishes, `A` will begin:
 ```
 In the same way, `AB` will begin when `A` finishes.
 
-## Lesson 1: Anchors
+## Lesson 2: Anchors
 
 Let's write a `code.yaml` that copies the anchor `&advice` with the alias `*advice`.
 
