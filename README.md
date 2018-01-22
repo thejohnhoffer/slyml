@@ -143,7 +143,7 @@ In the same way, `AB` will begin when `A` finishes.
 
 Let's write a `code.yaml` that copies the anchor `&advice` with the alias `*advice`.
 
-With this code, we use the format `"A B C, {A} {B} {C}: Thatʼs {THAT}"` in two ways:
+With this code, we have two options based on `"A B C, {A} {B} {C}: Thatʼs {THAT}"`:
 1. `python slyml.py code.yaml` looks up `A B C, 1 2 3: Thatʼs how easy love can be.` as the last step like `song.yaml`.
 2. `python slyml.py code.yaml code` only looks up `A B C, always be coding: Thatʼs bad advice` as the only step.
 
