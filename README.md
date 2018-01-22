@@ -55,7 +55,7 @@ Default:
         B: re,
         C: mi.
 ```
-Notice how in the `Main` `Inputs` here:
+Notice how one task in `Main` has `Inputs` like this:
 ```
   Inputs:
       THAT: "how easy {IT} can be."
@@ -63,7 +63,7 @@ Notice how in the `Main` `Inputs` here:
       B: 2
       C: 3
 ```
-Locally overwrite or expand on the `Deafult` `Constants` here:
+that overwrite or expand on the `Constants` in `Deafult`:
 ```
   Constants:
       IT: love
