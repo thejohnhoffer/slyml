@@ -63,7 +63,7 @@ Notice how one task in `Main` has `Inputs` like this:
       B: 2
       C: 3
 ```
-that overwrite or expand on the `Constants` in `Deafult`:
+that overwrite or take from the `Constants` in `Deafult`:
 ```
   Constants:
       IT: love
