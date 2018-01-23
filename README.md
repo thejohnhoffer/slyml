@@ -188,7 +188,7 @@ Installing [Slurm](https://slurm.schedmd.com/quickstart.html) lets you run proce
 ## Installation
 
 1. Get access to a slurm cluster or try to [set one up](https://slurm.schedmd.com/quickstart_admin.html) with the extra supercomputers around the house.
-2. Open a login shell on a slurm cluster node with access to `sbatch` and `python`(>2.6)
+2. Open a login shell on a slurm cluster node with access to `sbatch`(>=14.11) and `python`(>2.6)
 3. `git clone https://github.com/Rhoana/3dxp.git`
 4. run `python 3dxp/TASKS/slyml.py` on any slyml.yaml file. 
 
