@@ -180,9 +180,7 @@ Default:
         B: re,
         C: mi.
 ```
-This is a huge benefit for code reuse:
-All your jobs can differ slightly, in many ways, even fundamental structure!
-But you don't need to copy any of the logic, format, or inputs that don't change.
+This is a huge benefit for code reuse: all your jobs can differ slightly, in many ways, even fundamental structure! But with `slyml.py` you never need to copy any of the unchanged bits of logic, format, or input.
 
 ## Footnotes
 #### Slurm Sbatch
