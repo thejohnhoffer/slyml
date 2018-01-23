@@ -69,7 +69,7 @@ that overwrite or take from the `Constants` in `Deafult`:
       IT: love
       A: do,
       B: re,
-      C: mi
+      C: mi.
 ```
 Key Notes:
 * The `Inputs` format the `lyric` of any task
