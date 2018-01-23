@@ -180,6 +180,9 @@ Default:
         B: re,
         C: mi.
 ```
+This is a huge benefit for code reuse:
+All your jobs can differ slightly, in many ways, even fundamental structure!
+But you don't need to copy any of the logic, format, or inputs that don't change.
 
 ## Footnotes
 #### Slurm Sbatch
