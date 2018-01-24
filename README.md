@@ -1,8 +1,8 @@
 # Sly Markup Language 2.2
 
-| Where? | | What? |
-| --- |--- | --- |
-| [• Inputs](#lesson-0-inputs) [• Needs](#lesson-1-needs) [• Anchors](#lesson-2-anchors) [• Arrays](#lesson-3-arrays)  | | This tutorial is of general interest for `slurm`[†](#slurm-sbatch) users, but `slyml.py` has mainly streamlined conversion of image stacks to meshes needed for the [3DXP project](https://github.com/Rhoana/3dxp) in [Scalable Interactive Visualization for Connectomics](http://www.mdpi.com/2227-9709/4/3/29/pdf). Slyml is developed and maintained [in the 3DXP repository](https://github.com/Rhoana/3dxp/blob/master/TASKS/readme.md). Reminder: `slyml.py` needs `python2 (>=2.6)` and `slurm (>=14.11)`. It's easy to [get started](#installation)!|
+| Where? | What? |
+| ---  | --- |
+| [• Inputs](#lesson-0-inputs) [• Needs](#lesson-1-needs) [• Anchor](#lesson-2-anchors) [• Array](#lesson-3-arrays)  | This tutorial is of general interest for `slurm`[†](#slurm-sbatch) users, but `slyml.py` has mainly streamlined conversion of image stacks to meshes needed for the [3DXP project](https://github.com/Rhoana/3dxp) in [Scalable Interactive Visualization for Connectomics](http://www.mdpi.com/2227-9709/4/3/29/pdf). Slyml is developed and maintained [in the 3DXP repository](https://github.com/Rhoana/3dxp/blob/master/TASKS/readme.md). Reminder: `slyml.py` needs `python2 (>=2.6)` and `slurm (>=14.11)`. It's easy to [get started](#installation)!|
 
 > A B C it's easy,
 > It's like counting up to 3.
@@ -184,7 +184,9 @@ This is a huge benefit for code reuse: all your jobs can differ slightly, in man
 
 | | | Imagine you have a lot of tasks in a list. |
 | --- |--- | --- |
-| If you're Santa Claus, you need a high throughput solution that processes billions of gifts simultaneously. If we have 12 CPUs free on our cluster nodes, we can handle 12 unique groups of gifts simultaneously. We can write a new `something.sbatch` that assumes `$SLURM_ARRAY_TASK_ID` gives the position of the requested gift in a group of gifts. | | [![oh no](http://img.hoff.in/slyml/wcn-xmas.png?q=123)](http://webcomicname.com/post/154820035714) |
+| If you're Santa Claus, you need a high throughput solution that processes billions of gifts simultaneously. | | [![oh no](http://img.hoff.in/slyml/wcn-xmas.png?q=123)](http://webcomicname.com/post/154820035714) |
+
+If we have 12 CPUs free on our cluster nodes, we can handle 12 unique groups of gifts simultaneously. We can write a new `something.sbatch` that assumes `$SLURM_ARRAY_TASK_ID` gives the position of the requested gift in a group of gifts.
 
 ```bash
 #!/bin/bash
@@ -192,54 +194,20 @@ GIFTS=("partridge in a pear tree" "Turtle doves" "French hens" "Calling birds" "
 DAY=$SLURM_ARRAY_TASK_ID
 GIFT=${GIFTS[$DAY-1]}
 
-# Find videos with given christmas lyric
+# Find videos with a given christmas lyric
 python send_gifts.py --gift="$DAY $GIFT"
 ```
+
+By setting `Runs: 12` in `gifts.yaml`, we can run  `python slyml.py christmas.yaml` to send gifts for all 12 days of Christmas in simultaneously over 12 CPUS on our Slurm cluster.
+
 ```yaml
 Main:
-    Needs:
-      - lyric: "12 Drummers drumming"
-    For: &advice
-        lyric: "A B C, {A} {B} {C}: Thatʼs {THAT}"
-        Inputs:
-            THAT: "how easy {IT} can be."
-            A: 1
-            B: 2
-            C: 3
-code: 
-    <<: *advice
-    Inputs:
-        THAT: "bad advice!"
-        A: always
-        B: be
-        C: coding
-Default:
     Slurm: ./do/something.sbatch
     Flags: [partition, time]
     partition: general
-    Exports: [lyric]
     time: "1:00"
-    Constants:
-        IT: love
-        A: do,
-        B: re,
-        C: mi.
+    Runs: 12
 ```
-
-12 Drummers drumming
-11 Pipers piping
-10 Lords a-leaping
-9 Ladies dancing
-8 Maids a-milking
-7 Swans a-swimming
-6 Geese a-laying
-5 Golden rings
-4 Calling birds
-3 French hens
-2 Turtle doves
-1 partridge in a pear tree
-```
-
 
 ## Footnotes
 #### Slurm Sbatch
