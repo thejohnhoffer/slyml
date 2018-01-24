@@ -235,7 +235,7 @@ GIFT=${GIFTS[$DAY]}
 python send_gifts.py --gift="$DAY $GIFT"
 ```
 
-By setting `Runs: 12` in `gifts.yaml`, we can run  `python slyml.py gifts.yaml` to send gifts for all 12 days of Christmas in simultaneously over 12 CPUS on our Slurm cluster.
+By setting `Runs: 12` in `gifts.yaml`, we can run  `python slyml.py gifts.yaml` to send gifts for all 12 days of Christmas simultaneously over 12 CPUS on our Slurm cluster.
 
 ```yaml
 Main:
