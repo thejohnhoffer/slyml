@@ -91,7 +91,7 @@ Default:
         B: re,
         C: mi.
 ```
-Notice how one task in `Main` has `Inputs` like this:
+Notice how the last task in `Main` has `Inputs` like this:
 ```
   Inputs:
       THAT: "how easy {IT} can be."
