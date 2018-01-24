@@ -1,4 +1,4 @@
-# Sly Markup Language 2.2
+# Sly Markup Language
 
 | Where? | What? |
 | ---  | --- |
