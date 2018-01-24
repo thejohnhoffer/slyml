@@ -107,8 +107,9 @@ that overwrite or inherrit from the `Constants` in `Default`:
       B: re,
       C: mi.
 ```
-Key Notes:
-* The `Inputs` format the `lyric` of any task
+Key takeaways:
+* The `Inputs` can format the `lyric` of any task
+* The `Constants` can override or format the `Inputs`
 * Each task sends `Exports: [lyric]` to our `something.sbatch`
 * Each task sends `Flags: [partition, time]` to slurm's `sbatch`
 
