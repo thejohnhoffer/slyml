@@ -135,7 +135,7 @@ When `2A` finishes, `A` will begin:
 ```
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
     00000002_[0%1]   general   AB/son username PD       0:00      1 (Dependency)
-        00000001_0   general    A/son username  R       0:00      1 node_id12345
+        00000001_0   general    A/son username  R       0:01      1 node_id12345
 ```
 In the same way, `AB` will begin when `A` finishes.
 
