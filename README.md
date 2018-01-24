@@ -246,7 +246,7 @@ Main:
     Runs: 12
 ```
 If needed, `$SLURM_ARRAY_TASK_COUNT` will be `12` across all jobs.
-Technically, this `gifts.yaml` runs the following 12 commnads in parallel:
+Technically, this `gifts.yaml` runs the following 12 commands in parallel:
 ```bash
 python send_gifts.py --gift="0 Partridge in a pear tree"
 python send_gifts.py --gift="1 Turtle doves"
