@@ -227,15 +227,15 @@ If we have 12 CPUs free on our cluster nodes, we can handle 12 unique groups of 
 
 ```bash
 #!/bin/bash
-GIFTS=("partridge in a pear tree" "Turtle doves" "French hens" "Calling birds" "Golden rings" "Geese a-laying" "Swans a-swimming" "Maids a-milking" "Ladies dancing" "Lords a-leaping" "Pipers piping" "Drummers drumming")
+GIFTS=("Partridge in a pear tree" "Turtle doves" "French hens" "Calling birds" "Golden rings" "Geese a-laying" "Swans a-swimming" "Maids a-milking" "Ladies dancing" "Lords a-leaping" "Pipers piping" "Drummers drumming")
 DAY=$SLURM_ARRAY_TASK_ID
-GIFT=${GIFTS[$DAY-1]}
+GIFT=${GIFTS[$DAY]}
 
 # Find videos with a given christmas lyric
 python send_gifts.py --gift="$DAY $GIFT"
 ```
 
-By setting `Runs: 12` in `gifts.yaml`, we can run  `python slyml.py christmas.yaml` to send gifts for all 12 days of Christmas in simultaneously over 12 CPUS on our Slurm cluster.
+By setting `Runs: 12` in `gifts.yaml`, we can run  `python slyml.py gifts.yaml` to send gifts for all 12 days of Christmas in simultaneously over 12 CPUS on our Slurm cluster.
 
 ```yaml
 Main:
@@ -245,6 +245,18 @@ Main:
     time: "1:00"
     Runs: 12
 ```
+If needed, `$SLURM_ARRAY_TASK_COUNT` will be `12` across all jobs.
+Technically, this `gifts.yaml` runs the following 12 commnads in parallel:
+```bash
+python send_gifts.py --gift="0 Partridge in a pear tree"
+python send_gifts.py --gift="1 Turtle doves"
+python send_gifts.py --gift="2 French hens"
+...
+python send_gifts.py --gift="11 Drummers drumming"
+```
+
+I leave fixing the off-by zero error as an excercise in bash.
+Condolences to the partridge.
 
 ## Footnotes
 #### Slurm Sbatch
