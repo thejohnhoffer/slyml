@@ -2,7 +2,7 @@
 
 | Where? | What? |
 | ---  | --- |
-| [• Inputs](#lesson-0-inputs) [• Needs](#lesson-1-needs) [• Anchor](#lesson-2-anchors) [• Array](#lesson-3-arrays)  | This tutorial is of general interest for `slurm`[†](#slurm-sbatch) users, but `slyml.py` has mainly streamlined conversion of image stacks to meshes needed for the [3DXP project](https://github.com/Rhoana/3dxp) in [Scalable Interactive Visualization for Connectomics](http://www.mdpi.com/2227-9709/4/3/29/pdf). Slyml is developed and maintained [in the 3DXP repository](https://github.com/Rhoana/3dxp/blob/master/TASKS/readme.md). Reminder: `slyml.py` needs `python2 (>=2.6)` and `slurm (>=14.11)`. It's easy to [get started](#installation)!|
+| [• Inputs](#lesson-0-inputs) [• Needs](#lesson-1-needs) [• Alias](#lesson-2-alias) [• Array](#lesson-3-array)  | This tutorial is of general interest for `slurm`[†](#slurm-sbatch) users, but `slyml.py` has mainly streamlined conversion of image stacks to meshes needed for the [3DXP project](https://github.com/Rhoana/3dxp) in [Scalable Interactive Visualization for Connectomics](http://www.mdpi.com/2227-9709/4/3/29/pdf). Slyml is developed and maintained [in the 3DXP repository](https://github.com/Rhoana/3dxp/blob/master/TASKS/readme.md). Reminder: `slyml.py` needs `python2 (>=2.6)` and `slurm (>=14.11)`. It's easy to [get started](#installation)!|
 
 > A B C it's easy,
 > It's like counting up to 3.
@@ -139,7 +139,7 @@ When `2A` finishes, `A` will begin:
 ```
 In the same way, `AB` will begin when `A` finishes.
 
-## Lesson 2: Anchors
+## Lesson 2: Alias
 
 Let's write a `code.yaml` that copies the anchor `&advice` with the alias `*advice`.
 
@@ -180,7 +180,7 @@ Default:
 ```
 This is a huge benefit for code reuse: all your jobs can differ slightly, in many ways, even fundamental structure! But with `slyml.py` you never need to copy any of the unchanged bits of logic, format, or input.
 
-## Lesson 3: Arrays
+## Lesson 3: Array
 
 | | | Imagine you have a lot of tasks in a list. |
 | --- |--- | --- |
