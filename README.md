@@ -11,6 +11,45 @@
 
 — The Jackson 5, ABC _(edited for clarity)_
 
+Assume `something.sbatch` is in the same directory as this `abc.yaml` file:
+
+```yaml
+# Here we use nodes in a slurm partition called "general" 
+# to run "something.sbatch" on a sequence of 2 lyrics
+#
+Main:
+    sbatch_argument: "As simple as do, re, mi."
+    For:
+        sbatch_argument: "Itʼs easy as A, B, C."
+    Exports: [sbatch_argument]
+    Slurm: ./something.sbatch
+    Flags: [partition, time]
+    partition: general
+    time: "1:00"
+```
+
+Then `python slyml.py abc.yaml` will schedule `something.sbatch` to run twice in sequence:
+   - First, the `sbatch_argument` is set to `"As simple as do, re, mi."` as a variable in `something.sbatch`
+   - After that's done, `something.sbatch` will run again with `sbatch_argument` as `"Itʼs easy as A, B, C."`
+
+If we want to handle both lyrics simultaneously, we just write:
+
+```yaml
+Main:
+    For:
+      - sbatch_argument: "As simple as do, re, mi."
+      - sbatch_argument: "Itʼs easy as A, B, C."
+```
+
+instead of:
+
+```yaml
+Main:
+    sbatch_argument: "As simple as do, re, mi."
+    For:
+        sbatch_argument: "Itʼs easy as A, B, C."
+```
+
 ## Lesson 0: Inputs
 
 Let's say our script `something.sbatch` tries to find some words spoken in video files. Getting timestamps for the first lyric `"Itʼs easy as A, B, C."` will help find timestamps for the second lyric `"As simple as do, re, mi"`, and so on and so on as the song continues. If only the `lyric` changes each time we call our script, `something.sbatch` may look like this:
@@ -29,9 +68,6 @@ Our `something.sbatch` just calls `find_videos.py` with a single `lyric`, but we
 2. Tells `slurm` to handle lyrics in a certain order 
 
 ```yaml
-# Here we use nodes in a slurm partition called "general" 
-# to run "something.sbatch" on a sequence of 3 lyrics
-#
 Main:
     lyric: "As simple as {A} {B} {C}"
     Needs:
